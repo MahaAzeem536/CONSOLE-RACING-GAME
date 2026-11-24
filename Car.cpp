@@ -1,3 +1,4 @@
+
 #include "Car.h"
 #include <algorithm>
 #include <cmath>
@@ -161,6 +162,112 @@ void Car::setRotation(sf::Angle rotation) {
 sf::Vector2f Car::getPosition() const { return carSprite.getPosition(); }
 
 const sf::Sprite& Car::getSprite() const { return carSprite; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
