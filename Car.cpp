@@ -162,3 +162,43 @@ sf::Vector2f Car::getPosition() const { return carSprite.getPosition(); }
 
 const sf::Sprite& Car::getSprite() const { return carSprite; }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
