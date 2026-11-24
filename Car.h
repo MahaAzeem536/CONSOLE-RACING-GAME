@@ -21,7 +21,19 @@ class Car {
   sf::Vector2f getPosition() const;
 
  
-
+private:
+  sf::Texture carTexture;
+  sf::Sprite carSprite;
+  sf::Image trackMask;
+  sf::Vector2f safePosition{};
+  sf::Angle safeRotation{};
+  float speed = 0.0f;
+  const float acceleration = 150.0f;
+  const float maxSpeed = 350.0f;
+  const float braking = 300.0f;
+  const float drag = 60.0f;
+  const float turnSpeed = 120.0f;
+};
 
 
 
