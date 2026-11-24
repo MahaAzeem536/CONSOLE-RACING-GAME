@@ -2,7 +2,7 @@
 
 A local two-player racing game made with C++17 and SFML 3. Race around the track, pass all four checkpoints in order, and complete three laps. Each player starts with three lives. Driving off the track costs a life and returns the car to its last safe position.
 
-The game includes a main menu, car selection, saved race records, and a **Back to Menu** button during a race. The source code, headers, images, fonts, music, and score file are kept together in the project root. Start the game with this folder as the working directory so it can find its files.
+The game includes a main menu, car selection, saved race records, and a **Back to Menu** button during a race. PNG images and fonts are in `assets/`. The garage background and music are in the project root. Run the game with the project root as the working directory so it can find these files.
 
 ## Requirements
 
@@ -12,30 +12,53 @@ The game includes a main menu, car selection, saved race records, and a **Back t
 - Git for Windows
 - vcpkg
 
-The project uses SFML 3 Graphics and Audio. Its dependencies are listed in `vcpkg.json`.
+The project uses SFML 3 Graphics and Audio. The dependencies are listed in `vcpkg.json`; CMake installs them through vcpkg when you configure the project.
 
 ## Build and run on Windows
 
-Open **Developer PowerShell for Visual Studio**. Set the two paths below to your project folder and vcpkg installation, then run the commands:
+### 1. Install vcpkg
+
+If vcpkg is not already installed, open **Developer PowerShell for Visual Studio** and run these commands once:
 
 ```powershell
-$repoFolder = "C:\path\to\Console-Racing_System"
-$vcpkgRoot = "C:\path\to\vcpkg"
+$vcpkgRoot = "$env:USERPROFILE\source\vcpkg"
+git clone https://github.com/microsoft/vcpkg.git "$vcpkgRoot"
+& "$vcpkgRoot\bootstrap-vcpkg.bat"
+```
 
-cmake -S $repoFolder -B "$repoFolder\build" `
+If vcpkg is already installed, set `$vcpkgRoot` below to its existing folder.
+
+### 2. Configure and build the game
+
+Open Developer PowerShell for Visual Studio in the repository folder, then run:
+
+```powershell
+$repoFolder = (Get-Location).Path
+$vcpkgRoot = "$env:USERPROFILE\source\vcpkg"
+
+cmake -S "$repoFolder" -B "$repoFolder\build" `
   -DCMAKE_TOOLCHAIN_FILE="$vcpkgRoot\scripts\buildsystems\vcpkg.cmake" `
   -DVCPKG_TARGET_TRIPLET=x64-windows
 
 cmake --build "$repoFolder\build" --config Release
-Set-Location $repoFolder
-.\build\Release\game.exe
 ```
 
-The first build may take a few minutes while vcpkg downloads and builds SFML. Race results are saved in `scores.txt`.
+If vcpkg is installed in another location, change `$vcpkgRoot` to that folder.
+
+### 3. Run the game
+
+Run it from the repository folder so the relative image, font, and music paths work:
+
+```powershell
+Set-Location -LiteralPath $repoFolder
+& ".\build\Release\game.exe"
+```
+
+The first configuration may take a few minutes while vcpkg installs SFML and its dependencies. Race results are saved in `scores.txt`.
 
 ## Build and run on macOS
 
-Install CMake and SFML 3 with Homebrew, then run these commands from the project folder:
+Install CMake and SFML 3 with Homebrew. From the project folder, run:
 
 ```sh
 brew install cmake sfml
@@ -46,7 +69,7 @@ cmake --build build --config Release
 
 ## Build and run on Linux
 
-Install CMake 3.28 or newer, a C++17 compiler, and SFML 3 development libraries. From the project folder, run:
+Install CMake 3.28 or newer, a C++17 compiler, and the SFML 3 Graphics and Audio development libraries. From the project folder, run:
 
 ```sh
 cmake -S . -B build
@@ -67,8 +90,6 @@ cmake --build build --config Release
 
 ## Project files
 
-All project files are in this folder’s root; there are no `assets`, `data`, `include`, or `src` subfolders.
-
 - `main.cpp` starts the game.
 - `projectmenu.cpp` and `projectmenu.h` provide the main menu and records screen.
 - `CarSelection.cpp` provides the car selection screen.
@@ -77,6 +98,8 @@ All project files are in this folder’s root; there are no `assets`, `data`, `i
 - `checkpoint.cpp` and `checkpoint.h` provide checkpoint detection.
 - `Scores.h` and `scores.txt` handle saved race records.
 - `CMakeLists.txt` and `vcpkg.json` configure the build and dependencies.
-- Root-level PNG, JPG, TTF, and MP3 files provide the game’s images, fonts, and music.
+- `assets/` contains the PNG images and TTF fonts.
+- `car-selection-garage.jpg` is the garage background.
+- `menu_sound.mp3` is the menu music.
 
 Build output such as the `build` folder and `game.exe` is generated locally and does not need to be committed.
