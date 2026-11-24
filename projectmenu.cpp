@@ -11,7 +11,7 @@ int runMenu() {
   sf::Texture background;
   sf::Font font;
   if (!background.loadFromFile("assets/menupic.png") ||
-      !font.openFromFile("arial.ttf")) {
+      !font.openFromFile("assets/arial.ttf")) {
     return 1;
   }
 
