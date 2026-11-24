@@ -63,7 +63,7 @@ int selectCar(sf::RenderWindow& window, int selectedCar) {
                        screenSize.y / backgroundTexture.getSize().y});
 
   sf::Font font;
-  if (!font.openFromFile("arial.ttf")) {
+  if (!font.openFromFile("assets/arial.ttf")) {
     return -1;
   }
 
