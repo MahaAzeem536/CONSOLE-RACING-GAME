@@ -1,4 +1,15 @@
-
+#include "Car.h"
+#include <algorithm>
+#include <cmath>
+#include <string>
+namespace {
+constexpr float trackWidth = 1280.0f;
+constexpr float trackHeight = 720.0f;
+bool isOnTrack(const sf::Image& trackMask, const sf::Sprite& car) {
+  const sf::Vector2u maskSize = trackMask.getSize();
+  if (maskSize.x == 0 || maskSize.y == 0) {
+    return false;
+  }
   const sf::FloatRect bounds = car.getLocalBounds();
   const sf::Transform transform = car.getTransform();
   // Check the corners, edge centers, and center of the whole car.
