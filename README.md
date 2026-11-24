@@ -1,4 +1,4 @@
-# Console Racing System
+# Console Racing Game
 
 A local two-player racing game made with C++17 and SFML 3. Race around the track, pass all four checkpoints in order, and complete three laps. Each player starts with three lives. Driving off the track costs a life and returns the car to its last safe position.
 
