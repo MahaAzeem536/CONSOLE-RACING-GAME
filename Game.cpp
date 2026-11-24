@@ -98,7 +98,7 @@ int Game::run(sf::RenderWindow& window, int selectedCar) {
   // Load font
   sf::Font font;
 
-  if (!font.openFromFile("Roboto.ttf")) {
+  if (!font.openFromFile("assets/Roboto.ttf")) {
     std::cerr << "Failed to load font!" << std::endl;
     return 1;
   }
