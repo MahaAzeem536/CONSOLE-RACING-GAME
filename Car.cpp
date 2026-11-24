@@ -11,7 +11,16 @@ bool isOnTrack(const sf::Image& trackMask, const sf::Sprite& car) {
   if (maskSize.x == 0 || maskSize.y == 0) {
     return false;
   }
- 
+  const sf::FloatRect bounds = car.getLocalBounds();
+  const sf::Transform transform = car.getTransform();
+  // Check the corners, edge centers, and center of the whole car.
+  for (int row = 0; row < 3; ++row) {
+    for (int column = 0; column < 3; ++column) {
+      const sf::Vector2f localPoint{
+          bounds.position.x + bounds.size.x * column / 2.0f,
+          bounds.position.y + bounds.size.y * row / 2.0f};
+      const sf::Vector2f point = transform.transformPoint(localPoint);
+
       if (point.x < 0.0f || point.y < 0.0f || point.x >= trackWidth ||
           point.y >= trackHeight) {
         return false;
